@@ -1,14 +1,12 @@
 package com.example.newbiechen.ireader.ui.activity;
 
 import android.Manifest;
-import android.app.Dialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.view.menu.MenuBuilder;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -20,20 +18,13 @@ import android.widget.Toast;
 import com.example.newbiechen.ireader.R;
 import com.example.newbiechen.ireader.ui.base.BaseTabActivity;
 import com.example.newbiechen.ireader.ui.fragment.BookShelfFragment;
-import com.example.newbiechen.ireader.ui.fragment.CommunityFragment;
-import com.example.newbiechen.ireader.ui.fragment.FindFragment;
-import com.example.newbiechen.ireader.utils.Constant;
 import com.example.newbiechen.ireader.utils.PermissionsChecker;
-import com.example.newbiechen.ireader.utils.SharedPreUtils;
-import com.example.newbiechen.ireader.ui.dialog.SexChooseDialog;
 import com.example.newbiechen.ireader.utils.ToastUtils;
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
-import okhttp3.OkHttpClient;
 
 public class MainActivity extends BaseTabActivity{
     /*************Constant**********/
@@ -72,11 +63,11 @@ public class MainActivity extends BaseTabActivity{
 
     private void initFragment(){
         Fragment bookShelfFragment = new BookShelfFragment();
-        Fragment communityFragment = new CommunityFragment();
-        Fragment discoveryFragment = new FindFragment();
+//        Fragment communityFragment = new CommunityFragment();
+//        Fragment discoveryFragment = new FindFragment();
         mFragmentList.add(bookShelfFragment);
-        mFragmentList.add(communityFragment);
-        mFragmentList.add(discoveryFragment);
+//        mFragmentList.add(communityFragment);
+//        mFragmentList.add(discoveryFragment);
     }
 
     @Override
@@ -88,20 +79,8 @@ public class MainActivity extends BaseTabActivity{
     @Override
     protected void initWidget() {
         super.initWidget();
-        //性别选择框
-        showSexChooseDialog();
     }
 
-    private void showSexChooseDialog(){
-        String sex = SharedPreUtils.getInstance()
-                .getString(Constant.SHARED_SEX);
-        if (sex.equals("")){
-            mVp.postDelayed(()-> {
-                Dialog dialog = new SexChooseDialog(this);
-                dialog.show();
-            },500);
-        }
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

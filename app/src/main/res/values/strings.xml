@@ -5,8 +5,8 @@
     <!--string_array-->
     <string-array name="nb_fragment_title">
         <item>@string/nb.fragment.title.bookshelf</item>
-        <item>@string/nb.fragment.title.community</item>
-        <item>@string/nb.fragment.title.find</item>
+        <!--<item>@string/nb.fragment.title.community</item>-->
+        <!--<item>@string/nb.fragment.title.find</item>-->
     </string-array>
 
     <string-array name="nb_fragment_section">
