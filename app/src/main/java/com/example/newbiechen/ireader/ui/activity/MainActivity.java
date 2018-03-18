@@ -20,6 +20,7 @@ import com.example.newbiechen.ireader.ui.base.BaseTabActivity;
 import com.example.newbiechen.ireader.ui.fragment.BookShelfFragment;
 import com.example.newbiechen.ireader.utils.PermissionsChecker;
 import com.example.newbiechen.ireader.utils.ToastUtils;
+import com.tamic.fastdownsimple.DownLoadListActivity;
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -50,9 +51,9 @@ public class MainActivity extends BaseTabActivity{
     @Override
     protected void setUpToolbar(Toolbar toolbar) {
         super.setUpToolbar(toolbar);
-        toolbar.setLogo(R.mipmap.logo);
+//        toolbar.setLogo(R.mipmap.logo);
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
-        getSupportActionBar().setTitle("");
+        getSupportActionBar().setTitle("readBook毕设");
     }
 
     @Override
@@ -102,7 +103,8 @@ public class MainActivity extends BaseTabActivity{
 //            case R.id.action_my_message:
 //                break;
             case R.id.action_download:
-                activityCls = DownloadActivity.class;
+//                activityCls = DownloadActivity.class;
+                startActivity(new Intent(this, DownLoadListActivity.class));
                 break;
 //            case R.id.action_sync_bookshelf:
 //                break;

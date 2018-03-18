@@ -1,16 +1,14 @@
 package com.example.newbiechen.ireader.model.remote;
 
-import com.example.newbiechen.ireader.model.bean.BookChapterBean;
 import com.example.newbiechen.ireader.model.bean.BookDetailBean;
-import com.example.newbiechen.ireader.model.bean.ChapterInfoBean;
 import com.example.newbiechen.ireader.model.bean.packages.BillBookPackage;
 import com.example.newbiechen.ireader.model.bean.packages.BillboardPackage;
 import com.example.newbiechen.ireader.model.bean.packages.BookChapterPackage;
+import com.example.newbiechen.ireader.model.bean.packages.BookCommentPackage;
 import com.example.newbiechen.ireader.model.bean.packages.BookHelpsPackage;
 import com.example.newbiechen.ireader.model.bean.packages.BookListDetailPackage;
 import com.example.newbiechen.ireader.model.bean.packages.BookListPackage;
 import com.example.newbiechen.ireader.model.bean.packages.BookReviewPackage;
-import com.example.newbiechen.ireader.model.bean.packages.BookCommentPackage;
 import com.example.newbiechen.ireader.model.bean.packages.BookSortPackage;
 import com.example.newbiechen.ireader.model.bean.packages.BookSubSortPackage;
 import com.example.newbiechen.ireader.model.bean.packages.BookTagPackage;
@@ -28,9 +26,9 @@ import com.example.newbiechen.ireader.model.bean.packages.SearchBookPackage;
 import com.example.newbiechen.ireader.model.bean.packages.SortBookPackage;
 import com.example.newbiechen.ireader.model.bean.packages.TagSearchPackage;
 
-import io.reactivex.Observable;
+import java.util.List;
+
 import io.reactivex.Single;
-import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
@@ -329,6 +327,6 @@ public interface BookApi {
      * @param query:作者名或者书名
      * @return
      */
-    @GET("/book/fuzzy-search")
-    Single<SearchBookPackage> getSearchBookPackage(@Query("query") String query);
+    @GET("http://192.168.1.6:8080/book/{path}")
+    Single<List<SearchBookPackage.BooksBean>> getSearchBookPackage(@Path("path") String query);
 }

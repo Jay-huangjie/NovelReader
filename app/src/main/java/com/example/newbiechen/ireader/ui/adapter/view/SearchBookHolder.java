@@ -7,9 +7,6 @@ import com.bumptech.glide.Glide;
 import com.example.newbiechen.ireader.R;
 import com.example.newbiechen.ireader.model.bean.packages.SearchBookPackage;
 import com.example.newbiechen.ireader.ui.base.adapter.ViewHolderImpl;
-import com.example.newbiechen.ireader.utils.Constant;
-
-import org.w3c.dom.Text;
 
 /**
  * Created by newbiechen on 17-6-2.
@@ -32,15 +29,14 @@ public class SearchBookHolder extends ViewHolderImpl<SearchBookPackage.BooksBean
     public void onBind(SearchBookPackage.BooksBean data, int pos) {
         //显示图片
         Glide.with(getContext())
-                .load(Constant.IMG_BASE_URL + data.getCover())
+                .load(R.drawable.ic_book_loading)
                 .placeholder(R.drawable.ic_book_loading)
                 .error(R.drawable.ic_load_error)
                 .into(mIvCover);
 
-        mTvName.setText(data.getTitle());
+        mTvName.setText(data.getName());
 
-        mTvBrief.setText(getContext().getString(R.string.nb_search_book_brief,
-                data.getLatelyFollower(),data.getRetentionRatio(),data.getAuthor()));
+        mTvBrief.setText("上传时间：" + data.getTimestamp());
     }
 
     @Override

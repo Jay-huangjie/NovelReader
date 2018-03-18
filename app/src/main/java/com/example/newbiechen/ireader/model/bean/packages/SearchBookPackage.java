@@ -37,122 +37,52 @@ public class SearchBookPackage extends BaseBean {
          * wordCount : 4942027
          */
 
-        private String _id;
-        private boolean hasCp;
-        private String title;
-        private String cat;
-        private String author;
-        private String site;
-        private String cover;
-        private String shortIntro;
-        private String lastChapter;
-        private double retentionRatio;
-        private int banned;
-        private int latelyFollower;
-        private int wordCount;
+        private int id;
+        private String name;
+        private String url;
+        private String timestamp;
 
-        public String get_id() {
-            return _id;
+
+        public int getId() {
+            return id;
         }
 
-        public void set_id(String _id) {
-            this._id = _id;
+        public void setId(int id) {
+            this.id = id;
         }
 
-        public boolean isHasCp() {
-            return hasCp;
+        public String getName() {
+            return name;
         }
 
-        public void setHasCp(boolean hasCp) {
-            this.hasCp = hasCp;
+        public void setName(String name) {
+            this.name = name;
         }
 
-        public String getTitle() {
-            return title;
+        public String getUrl() {
+            return url;
         }
 
-        public void setTitle(String title) {
-            this.title = title;
+        public void setUrl(String url) {
+            this.url = url;
         }
 
-        public String getCat() {
-            return cat;
+        public String getTimestamp() {
+            return timestamp;
         }
 
-        public void setCat(String cat) {
-            this.cat = cat;
+        public void setTimestamp(String timestamp) {
+            this.timestamp = timestamp;
         }
 
-        public String getAuthor() {
-            return author;
-        }
-
-        public void setAuthor(String author) {
-            this.author = author;
-        }
-
-        public String getSite() {
-            return site;
-        }
-
-        public void setSite(String site) {
-            this.site = site;
-        }
-
-        public String getCover() {
-            return cover;
-        }
-
-        public void setCover(String cover) {
-            this.cover = cover;
-        }
-
-        public String getShortIntro() {
-            return shortIntro;
-        }
-
-        public void setShortIntro(String shortIntro) {
-            this.shortIntro = shortIntro;
-        }
-
-        public String getLastChapter() {
-            return lastChapter;
-        }
-
-        public void setLastChapter(String lastChapter) {
-            this.lastChapter = lastChapter;
-        }
-
-        public double getRetentionRatio() {
-            return retentionRatio;
-        }
-
-        public void setRetentionRatio(double retentionRatio) {
-            this.retentionRatio = retentionRatio;
-        }
-
-        public int getBanned() {
-            return banned;
-        }
-
-        public void setBanned(int banned) {
-            this.banned = banned;
-        }
-
-        public int getLatelyFollower() {
-            return latelyFollower;
-        }
-
-        public void setLatelyFollower(int latelyFollower) {
-            this.latelyFollower = latelyFollower;
-        }
-
-        public int getWordCount() {
-            return wordCount;
-        }
-
-        public void setWordCount(int wordCount) {
-            this.wordCount = wordCount;
+        @Override
+        public String toString() {
+            return "BooksBean{" +
+                    "id='" + id + '\'' +
+                    ", name='" + name + '\'' +
+                    ", url='" + url + '\'' +
+                    ", timestamp='" + timestamp + '\'' +
+                    '}';
         }
     }
 }
