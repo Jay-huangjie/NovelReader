@@ -10,11 +10,11 @@
         android:icon="@drawable/ic_menu_search"
         app:showAsAction="ifRoom"/>
 
-    <!--<item-->
-        <!--android:id="@+id/action_login"-->
-        <!--android:title="@string/nb.menu.action.login"-->
-        <!--android:icon="@drawable/ic_menu_login"-->
-        <!--app:showAsAction="never" />-->
+    <item
+        android:id="@+id/action_login"
+        android:title="@string/nb.menu.action.login"
+        android:icon="@drawable/ic_menu_login"
+        app:showAsAction="never" />
 
     <!--<item-->
         <!--android:id="@+id/action_my_message"-->

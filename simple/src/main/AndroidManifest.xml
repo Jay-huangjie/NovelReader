@@ -29,10 +29,10 @@
     <application>
         <activity android:name=".MainActivity">
         </activity>
-        <activity
-            android:name=".DownLoadListActivity"
-            android:label="@string/title_activity_downlist"
-         />
+        <!--<activity-->
+            <!--android:name=".DownLoadListActivity"-->
+            <!--android:label="@string/title_activity_downlist"-->
+         <!--/>-->
         <activity
             android:name=".DownLoadAddActivity"
             android:label="@string/title_activity_down_load_add" />

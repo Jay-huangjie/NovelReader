@@ -1,6 +1,7 @@
 package com.example.newbiechen.ireader.model.remote;
 
 import com.example.newbiechen.ireader.model.bean.BookDetailBean;
+import com.example.newbiechen.ireader.model.bean.User;
 import com.example.newbiechen.ireader.model.bean.packages.BillBookPackage;
 import com.example.newbiechen.ireader.model.bean.packages.BillboardPackage;
 import com.example.newbiechen.ireader.model.bean.packages.BookChapterPackage;
@@ -29,7 +30,9 @@ import com.example.newbiechen.ireader.model.bean.packages.TagSearchPackage;
 import java.util.List;
 
 import io.reactivex.Single;
+import retrofit2.http.Body;
 import retrofit2.http.GET;
+import retrofit2.http.POST;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 
@@ -329,4 +332,12 @@ public interface BookApi {
      */
     @GET("http://192.168.1.6:8080/book/{path}")
     Single<List<SearchBookPackage.BooksBean>> getSearchBookPackage(@Path("path") String query);
+
+
+    @POST("http://192.168.1.6:8080/book/register")
+    Single<Boolean> register(@Body User user);
+
+    @GET("http://192.168.1.6:8080/login")
+    Single<Boolean> login(@Query("username") String username,@Query("password") String password);
+
 }

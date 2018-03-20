@@ -135,7 +135,7 @@ public class SearchActivity extends BaseMVPActivity<SearchContract.Presenter>
                     isTag = false;
                 } else {
                     //传递
-                    mPresenter.searchKeyWord(query);
+//                    mPresenter.searchKeyWord(query);
                 }
             }
 
