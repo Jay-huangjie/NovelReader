@@ -334,7 +334,7 @@ public interface BookApi {
     Single<List<SearchBookPackage.BooksBean>> getSearchBookPackage(@Path("path") String query);
 
 
-    @POST("http://192.168.1.6:8080/book/register")
+    @POST("http://192.168.1.6:8080/register")
     Single<Boolean> register(@Body User user);
 
     @GET("http://192.168.1.6:8080/login")

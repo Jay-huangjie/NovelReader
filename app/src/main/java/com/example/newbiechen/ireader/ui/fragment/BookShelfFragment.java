@@ -15,7 +15,6 @@ import com.example.newbiechen.ireader.R;
 import com.example.newbiechen.ireader.RxBus;
 import com.example.newbiechen.ireader.event.DeleteResponseEvent;
 import com.example.newbiechen.ireader.event.DeleteTaskEvent;
-import com.example.newbiechen.ireader.event.DownloadMessage;
 import com.example.newbiechen.ireader.model.bean.CollBookBean;
 import com.example.newbiechen.ireader.model.local.BookRepository;
 import com.example.newbiechen.ireader.presenter.BookShelfPresenter;
@@ -24,7 +23,6 @@ import com.example.newbiechen.ireader.ui.activity.ReadActivity;
 import com.example.newbiechen.ireader.ui.adapter.CollBookAdapter;
 import com.example.newbiechen.ireader.ui.base.BaseMVPFragment;
 import com.example.newbiechen.ireader.utils.RxUtils;
-import com.example.newbiechen.ireader.utils.ToastUtils;
 import com.example.newbiechen.ireader.widget.adapter.WholeAdapter;
 import com.example.newbiechen.ireader.widget.itemdecoration.DividerItemDecoration;
 import com.example.newbiechen.ireader.widget.refresh.ScrollRefreshRecyclerView;
@@ -91,16 +89,16 @@ public class BookShelfFragment extends BaseMVPFragment<BookShelfContract.Present
 //                );
 //        addDisposable(recommendDisp);
 
-        Disposable donwloadDisp = RxBus.getInstance()
-                .toObservable(DownloadMessage.class)
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(
-                        event -> {
-                            //使用Toast提示
-                            ToastUtils.show(event.message);
-                        }
-                );
-        addDisposable(donwloadDisp);
+//        Disposable donwloadDisp = RxBus.getInstance()
+//                .toObservable(DownloadMessage.class)
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribe(
+//                        event -> {
+//                            //使用Toast提示
+//                            ToastUtils.show(event.message);
+//                        }
+//                );
+//        addDisposable(donwloadDisp);
 
         //删除书籍 (写的丑了点)
         Disposable deleteDisp = RxBus.getInstance()
@@ -321,8 +319,8 @@ public class BookShelfFragment extends BaseMVPFragment<BookShelfContract.Present
 
     @Override
     public void showErrorTip(String error) {
-        mRvContent.setTip(error);
-        mRvContent.showTip();
+//        mRvContent.setTip(error);
+//        mRvContent.showTip();
     }
 
     /*****************************************************************/
