@@ -56,6 +56,7 @@ public class RegisterActivity extends AppCompatActivity implements LoaderCallbac
     private static final String[] DUMMY_CREDENTIALS = new String[]{
             "foo@example.com:hello", "bar@example.com:world"
     };
+    protected EditText passwordRepeat;
     /**
      * Keep track of the login task to ensure we can cancel it if requested.
      */
@@ -70,7 +71,7 @@ public class RegisterActivity extends AppCompatActivity implements LoaderCallbac
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_register);
+        super.setContentView(R.layout.activity_register);
         // Set up the login form.
         mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
         populateAutoComplete();
@@ -97,6 +98,7 @@ public class RegisterActivity extends AppCompatActivity implements LoaderCallbac
 
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
+        initView();
     }
 
     private void populateAutoComplete() {
@@ -160,6 +162,7 @@ public class RegisterActivity extends AppCompatActivity implements LoaderCallbac
         // Store values at the time of the login attempt.
         String email = mEmailView.getText().toString();
         String password = mPasswordView.getText().toString();
+        String password2 = passwordRepeat.getText().toString();
 
         boolean cancel = false;
         View focusView = null;
@@ -169,6 +172,17 @@ public class RegisterActivity extends AppCompatActivity implements LoaderCallbac
             mPasswordView.setError(getString(R.string.error_invalid_password));
             focusView = mPasswordView;
             cancel = true;
+        }
+
+        if (!TextUtils.isEmpty(password2) && !isPasswordValid(password2)) {
+            passwordRepeat.setError(getString(R.string.error_invalid_password));
+            focusView = passwordRepeat;
+            cancel = true;
+        }
+
+        if (!password.equals(password2)){
+            ToastUtils.show("两次密码不一致！");
+            return;
         }
 
         // Check for a valid email address.
@@ -303,6 +317,10 @@ public class RegisterActivity extends AppCompatActivity implements LoaderCallbac
                         android.R.layout.simple_dropdown_item_1line, emailAddressCollection);
 
         mEmailView.setAdapter(adapter);
+    }
+
+    private void initView() {
+        passwordRepeat = (EditText) findViewById(R.id.password_repeat);
     }
 
 

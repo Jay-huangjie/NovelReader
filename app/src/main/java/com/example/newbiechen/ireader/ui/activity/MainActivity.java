@@ -97,9 +97,9 @@ public class MainActivity extends BaseTabActivity {
             case R.id.action_search:
                 activityCls = SearchActivity.class;
                 break;
-            case R.id.action_login:
-                activityCls = LoginActivity.class;
-                break;
+//            case R.id.action_login:
+//                activityCls = LoginActivity.class;
+//                break;
 //            case R.id.action_my_message:
 //                break;
             case R.id.action_download:
@@ -156,11 +156,11 @@ public class MainActivity extends BaseTabActivity {
                 e.printStackTrace();
             }
 
-            if (menu.getItem(0).getItemId() == R.id.action_login) {
-                if (getSharedPreferences("login", MODE_PRIVATE).getBoolean("islogin", false)){
-                    menu.getItem(0).setTitle("已登录");
-                }
-            }
+//            if (menu.getItem(0).getItemId() == R.id.action_login) {
+//                if (getSharedPreferences("login", MODE_PRIVATE).getBoolean("islogin", false)){
+//                    menu.getItem(0).setTitle("已登录");
+//                }
+//            }
         }
         return super.onPreparePanel(featureId, view, menu);
     }

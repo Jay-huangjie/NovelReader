@@ -106,6 +106,11 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
             }
         });
+
+        if (getSharedPreferences("login", MODE_PRIVATE).getBoolean("islogin", false)) {
+            ToastUtils.show("已登录~");
+            startActivity(new Intent(LoginActivity.this, MainActivity.class));
+        }
     }
 
     private void populateAutoComplete() {
@@ -209,11 +214,14 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                                 Log.i(TAG, "attemptLogin: " + bean);
                                 if (bean) {
                                     ToastUtils.show("登陆成功");
-                                    finish();
+
+                                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
                                     getSharedPreferences("login", MODE_PRIVATE)
                                             .edit()
                                             .putBoolean("islogin", true)
                                             .apply();
+                                    finish();
+
                                 } else {
                                     ToastUtils.show("登陆失败");
                                 }
