@@ -155,6 +155,12 @@
                     style="@style/NB.Theme.TextAppearance.Read.BottomMenu.Button"
                     android:drawableTop="@drawable/ic_read_menu_font"
                     android:text="@string/nb.read.setting" />
+
+                <TextView
+                    android:id="@+id/read_tv_auto"
+                    style="@style/NB.Theme.TextAppearance.Read.BottomMenu.Button"
+                    android:drawableTop="@drawable/ic_playlist_play_black_24dp"
+                    android:text="自动" />
             </LinearLayout>
         </LinearLayout>
     </RelativeLayout>
@@ -188,7 +194,9 @@
                 android:id="@+id/read_iv_category"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:scrollbars="vertical"></ListView>
+                android:scrollbars="vertical">
+
+            </ListView>
         </RelativeLayout>
     </LinearLayout>
 </android.support.v4.widget.DrawerLayout>

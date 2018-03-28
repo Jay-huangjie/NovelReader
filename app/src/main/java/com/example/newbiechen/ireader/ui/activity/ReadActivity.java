@@ -54,8 +54,11 @@ import com.example.newbiechen.ireader.widget.page.PageView;
 import com.example.newbiechen.ireader.widget.page.TxtChapter;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
+import io.reactivex.Observable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 
 import static android.support.v4.view.ViewCompat.LAYER_TYPE_SOFTWARE;
@@ -117,6 +120,8 @@ public class ReadActivity extends BaseMVPActivity<ReadContract.Presenter>
         TextView mTvDownload;*/
     @BindView(R.id.read_tv_setting)
     TextView mTvSetting;
+    @BindView(R.id.read_tv_auto)
+    TextView mTvAuto;
     /***************left slide*******************************/
     @BindView(R.id.read_iv_category)
     ListView mLvCategory;
@@ -146,6 +151,9 @@ public class ReadActivity extends BaseMVPActivity<ReadContract.Presenter>
             }
         }
     };
+
+    private boolean auto;
+
     // 接收电池信息和时间更新的广播
     private BroadcastReceiver mReceiver = new BroadcastReceiver() {
         @Override
@@ -198,6 +206,7 @@ public class ReadActivity extends BaseMVPActivity<ReadContract.Presenter>
     private boolean isRegistered = false;
 
     private String mBookId;
+    private Disposable subscribe;
 
     public static void startActivity(Context context, CollBookBean collBook, boolean isCollected) {
         context.startActivity(new Intent(context, ReadActivity.class)
@@ -285,6 +294,14 @@ public class ReadActivity extends BaseMVPActivity<ReadContract.Presenter>
 
         //初始化BottomMenu
         initBottomMenu();
+
+        //自动翻页
+        subscribe = Observable.interval(3, TimeUnit.SECONDS)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(aLong -> {
+                    if (auto)
+                        mPvPage.autoNextPage();
+                });
     }
 
     private void initTopMenu() {
@@ -397,8 +414,7 @@ public class ReadActivity extends BaseMVPActivity<ReadContract.Presenter>
                         if (mPageLoader.getPageStatus() == PageLoader.STATUS_LOADING
                                 || mPageLoader.getPageStatus() == PageLoader.STATUS_ERROR) {
                             mSbChapterProgress.setEnabled(false);
-                        }
-                        else {
+                        } else {
                             mSbChapterProgress.setEnabled(true);
                         }
                     }
@@ -489,6 +505,18 @@ public class ReadActivity extends BaseMVPActivity<ReadContract.Presenter>
                     mSettingDialog.show();
                 }
         );
+
+        mTvAuto.setOnClickListener(v -> {
+            if ("on".equals(mTvAuto.getTag())) {
+                auto = false;
+                mTvAuto.setTag("off");
+                mTvAuto.setBackgroundResource(R.drawable.ic_pause_circle_outline_black_24dp);
+            } else {
+                auto = true;
+                mTvAuto.setTag("on");
+                mTvAuto.setBackgroundResource(R.drawable.ic_playlist_play_black_24dp);
+            }
+        });
 
         mTvPreChapter.setOnClickListener(
                 (v) -> {
