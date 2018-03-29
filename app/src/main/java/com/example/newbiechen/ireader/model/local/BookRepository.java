@@ -3,6 +3,7 @@ package com.example.newbiechen.ireader.model.local;
 import android.util.Log;
 
 import com.example.newbiechen.ireader.model.bean.BookChapterBean;
+import com.example.newbiechen.ireader.model.bean.BookMarkerBean;
 import com.example.newbiechen.ireader.model.bean.BookRecordBean;
 import com.example.newbiechen.ireader.model.bean.ChapterInfoBean;
 import com.example.newbiechen.ireader.model.bean.CollBookBean;
@@ -275,5 +276,23 @@ public class BookRepository {
 
     public DaoSession getSession() {
         return mSession;
+    }
+
+    /**
+     * 添加书签
+     *
+     * @param bookId
+     * @param p
+     */
+    public void addBookMarker(String bookId, int p) {
+        mSession.getBookMarkerBeanDao()
+                .insert(new BookMarkerBean(null, bookId, p));
+    }
+
+    public List<BookMarkerBean> getBookMarkers(String bookId) {
+        return mSession.getBookMarkerBeanDao().queryBuilder()
+                .where(BookRecordBeanDao.Properties.BookId.eq(bookId))
+                .build().list();
+
     }
 }

@@ -216,7 +216,7 @@ public class RegisterActivity extends AppCompatActivity implements LoaderCallbac
                                     ToastUtils.show("注册成功");
                                     finish();
                                 } else {
-                                    ToastUtils.show("注册失败");
+                                    ToastUtils.show("注册失败,该用户已存在");
                                 }
                             },
                             e -> {

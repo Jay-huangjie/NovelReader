@@ -49,6 +49,7 @@ import com.example.newbiechen.ireader.utils.RxUtils;
 import com.example.newbiechen.ireader.utils.ScreenUtils;
 import com.example.newbiechen.ireader.utils.StringUtils;
 import com.example.newbiechen.ireader.utils.SystemBarUtils;
+import com.example.newbiechen.ireader.utils.ToastUtils;
 import com.example.newbiechen.ireader.widget.page.PageLoader;
 import com.example.newbiechen.ireader.widget.page.PageView;
 import com.example.newbiechen.ireader.widget.page.TxtChapter;
@@ -122,6 +123,8 @@ public class ReadActivity extends BaseMVPActivity<ReadContract.Presenter>
     TextView mTvSetting;
     @BindView(R.id.read_tv_auto)
     TextView mTvAuto;
+    @BindView(R.id.read_tv_add)
+    TextView mTvAdd;
     /***************left slide*******************************/
     @BindView(R.id.read_iv_category)
     ListView mLvCategory;
@@ -510,12 +513,21 @@ public class ReadActivity extends BaseMVPActivity<ReadContract.Presenter>
             if ("on".equals(mTvAuto.getTag())) {
                 auto = false;
                 mTvAuto.setTag("off");
-                mTvAuto.setBackgroundResource(R.drawable.ic_pause_circle_outline_black_24dp);
+                Drawable rightDrawable = getResources().getDrawable(R.drawable.ic_playlist_play_black_24dp);
+                rightDrawable.setBounds(0, 0, rightDrawable.getMinimumWidth(), rightDrawable.getMinimumHeight());
+                mTvAuto.setCompoundDrawables(null,rightDrawable,null,null);
             } else {
                 auto = true;
                 mTvAuto.setTag("on");
-                mTvAuto.setBackgroundResource(R.drawable.ic_playlist_play_black_24dp);
+                Drawable rightDrawable = getResources().getDrawable(R.drawable.ic_pause_circle_outline_black_24dp);
+                rightDrawable.setBounds(0, 0, rightDrawable.getMinimumWidth(), rightDrawable.getMinimumHeight());
+                mTvAuto.setCompoundDrawables(null,rightDrawable,null,null);
             }
+        });
+
+        mTvAdd.setOnClickListener(v -> {
+            BookRepository.getInstance().addBookMarker(mBookId, mPageLoader.getPagePos());
+            ToastUtils.show("添加成功~");
         });
 
         mTvPreChapter.setOnClickListener(

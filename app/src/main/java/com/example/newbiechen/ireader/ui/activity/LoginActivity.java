@@ -109,7 +109,29 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
         if (getSharedPreferences("login", MODE_PRIVATE).getBoolean("islogin", false)) {
             ToastUtils.show("已登录~");
-            startActivity(new Intent(LoginActivity.this, MainActivity.class));
+            showProgress(true);
+//            mAuthTask = new UserLoginTask(email, password);
+//            mAuthTask.execute((Void) null);
+            RemoteRepository.getInstance().login(getSharedPreferences("login", MODE_PRIVATE).getString("username","")
+                    , getSharedPreferences("login", MODE_PRIVATE).getString("password",""))
+                    .compose(RxUtils::toSimpleSingle)
+                    .subscribe(
+                            bean -> {
+                                showProgress(false);
+                                Log.i(TAG, "attemptLogin: " + bean);
+                                if (bean) {
+                                    ToastUtils.show("登陆成功");
+                                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                                    finish();
+                                } else {
+                                    ToastUtils.show("登陆失败,用户名或密码错误");
+                                }
+                            },
+                            e -> {
+                                LogUtils.e(e);
+                                showProgress(false);
+                            }
+                    );
         }
     }
 
@@ -219,11 +241,13 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                                     getSharedPreferences("login", MODE_PRIVATE)
                                             .edit()
                                             .putBoolean("islogin", true)
+                                            .putString("username", email)
+                                            .putString("password", password)
                                             .apply();
                                     finish();
 
                                 } else {
-                                    ToastUtils.show("登陆失败");
+                                    ToastUtils.show("登陆失败,用户名或密码错误");
                                 }
                             },
                             e -> {
