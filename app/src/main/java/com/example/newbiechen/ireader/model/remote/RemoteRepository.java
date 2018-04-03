@@ -1,5 +1,6 @@
 package com.example.newbiechen.ireader.model.remote;
 
+import com.example.newbiechen.ireader.model.bean.Announcement;
 import com.example.newbiechen.ireader.model.bean.BillBookBean;
 import com.example.newbiechen.ireader.model.bean.BookChapterBean;
 import com.example.newbiechen.ireader.model.bean.BookCommentBean;
@@ -303,6 +304,11 @@ public class RemoteRepository {
 
     public Single<Boolean> register(String username, String password) {
         return mBookApi.register(new User(username, password))
+                .map(bean -> bean);
+    }
+
+    public Single<Announcement> lastannouncement() {
+        return mBookApi.lastannouncement()
                 .map(bean -> bean);
     }
 }

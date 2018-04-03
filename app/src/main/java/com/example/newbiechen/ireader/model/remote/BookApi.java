@@ -1,5 +1,6 @@
 package com.example.newbiechen.ireader.model.remote;
 
+import com.example.newbiechen.ireader.model.bean.Announcement;
 import com.example.newbiechen.ireader.model.bean.BookDetailBean;
 import com.example.newbiechen.ireader.model.bean.User;
 import com.example.newbiechen.ireader.model.bean.packages.BillBookPackage;
@@ -339,5 +340,8 @@ public interface BookApi {
 
     @GET("http://192.168.1.6:8080/login")
     Single<Boolean> login(@Query("username") String username,@Query("password") String password);
+
+    @GET("http://192.168.1.6:8080/lastannouncement")
+    Single<Announcement> lastannouncement();
 
 }

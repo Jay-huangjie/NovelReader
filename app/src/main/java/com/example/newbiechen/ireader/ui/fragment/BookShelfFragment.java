@@ -17,6 +17,7 @@ import com.example.newbiechen.ireader.event.DeleteResponseEvent;
 import com.example.newbiechen.ireader.event.DeleteTaskEvent;
 import com.example.newbiechen.ireader.model.bean.CollBookBean;
 import com.example.newbiechen.ireader.model.local.BookRepository;
+import com.example.newbiechen.ireader.model.remote.RemoteRepository;
 import com.example.newbiechen.ireader.presenter.BookShelfPresenter;
 import com.example.newbiechen.ireader.presenter.contract.BookShelfContract;
 import com.example.newbiechen.ireader.ui.activity.ReadActivity;
@@ -26,8 +27,10 @@ import com.example.newbiechen.ireader.utils.RxUtils;
 import com.example.newbiechen.ireader.widget.adapter.WholeAdapter;
 import com.example.newbiechen.ireader.widget.itemdecoration.DividerItemDecoration;
 import com.example.newbiechen.ireader.widget.refresh.ScrollRefreshRecyclerView;
+import com.sunfusheng.marqueeview.MarqueeView;
 
 import java.io.File;
+import java.util.Arrays;
 import java.util.List;
 
 import butterknife.BindView;
@@ -65,6 +68,16 @@ public class BookShelfFragment extends BaseMVPFragment<BookShelfContract.Present
     protected void initWidget(Bundle savedInstanceState) {
         super.initWidget(savedInstanceState);
         setUpAdapter();
+        MarqueeView marqueeView = (MarqueeView) getViewById(R.id.marqueeView);
+
+        RemoteRepository.getInstance().lastannouncement()
+                .compose(RxUtils::toSimpleSingle)
+                .subscribe((announcement, throwable) -> {
+                    if (announcement == null)
+                        return;
+                    String[] split = announcement.getContent().split(";");
+                    marqueeView.startWithList(Arrays.asList(split));
+                });
     }
 
     private void setUpAdapter() {
