@@ -125,6 +125,8 @@ public class ReadActivity extends BaseMVPActivity<ReadContract.Presenter>
     TextView mTvAuto;
     @BindView(R.id.read_tv_add)
     TextView mTvAdd;
+    @BindView(R.id.read_tv_marker)
+    TextView mTvMark;
     /***************left slide*******************************/
     @BindView(R.id.read_iv_category)
     ListView mLvCategory;
@@ -515,19 +517,25 @@ public class ReadActivity extends BaseMVPActivity<ReadContract.Presenter>
                 mTvAuto.setTag("off");
                 Drawable rightDrawable = getResources().getDrawable(R.drawable.ic_playlist_play_black_24dp);
                 rightDrawable.setBounds(0, 0, rightDrawable.getMinimumWidth(), rightDrawable.getMinimumHeight());
-                mTvAuto.setCompoundDrawables(null,rightDrawable,null,null);
+                mTvAuto.setCompoundDrawables(null, rightDrawable, null, null);
             } else {
                 auto = true;
                 mTvAuto.setTag("on");
                 Drawable rightDrawable = getResources().getDrawable(R.drawable.ic_pause_circle_outline_black_24dp);
                 rightDrawable.setBounds(0, 0, rightDrawable.getMinimumWidth(), rightDrawable.getMinimumHeight());
-                mTvAuto.setCompoundDrawables(null,rightDrawable,null,null);
+                mTvAuto.setCompoundDrawables(null, rightDrawable, null, null);
             }
         });
 
         mTvAdd.setOnClickListener(v -> {
             BookRepository.getInstance().addBookMarker(mBookId, mPageLoader.getPagePos());
             ToastUtils.show("添加成功~");
+        });
+
+        mTvMark.setOnClickListener(v -> {
+            Intent intent = new Intent(this, BookMarkerActivity.class);
+            intent.putExtra("id", mBookId);
+            startActivityForResult(intent,10010);
         });
 
         mTvPreChapter.setOnClickListener(
@@ -843,6 +851,8 @@ public class ReadActivity extends BaseMVPActivity<ReadContract.Presenter>
             } else {
                 SystemBarUtils.showStableNavBar(this);
             }
+        } else if (requestCode == 10010) {
+            mPageLoader.skipToPage(resultCode);
         }
     }
 }

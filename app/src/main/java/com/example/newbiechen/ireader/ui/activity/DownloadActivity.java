@@ -35,6 +35,7 @@ public class DownloadActivity extends BaseActivity implements DownloadService.On
 
     private ServiceConnection mConn;
     private DownloadService.IDownloadManager mService;
+
     @Override
     protected int getContentId() {
         return R.layout.activity_refresh_list;

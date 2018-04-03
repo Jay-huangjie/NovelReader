@@ -8,6 +8,7 @@ import com.example.newbiechen.ireader.model.bean.BookRecordBean;
 import com.example.newbiechen.ireader.model.bean.ChapterInfoBean;
 import com.example.newbiechen.ireader.model.bean.CollBookBean;
 import com.example.newbiechen.ireader.model.gen.BookChapterBeanDao;
+import com.example.newbiechen.ireader.model.gen.BookMarkerBeanDao;
 import com.example.newbiechen.ireader.model.gen.BookRecordBeanDao;
 import com.example.newbiechen.ireader.model.gen.CollBookBeanDao;
 import com.example.newbiechen.ireader.model.gen.DaoSession;
@@ -291,7 +292,7 @@ public class BookRepository {
 
     public List<BookMarkerBean> getBookMarkers(String bookId) {
         return mSession.getBookMarkerBeanDao().queryBuilder()
-                .where(BookRecordBeanDao.Properties.BookId.eq(bookId))
+                .where(BookMarkerBeanDao.Properties.BookId.eq(bookId))
                 .build().list();
 
     }

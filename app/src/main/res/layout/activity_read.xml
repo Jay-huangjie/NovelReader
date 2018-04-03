@@ -167,6 +167,12 @@
                     style="@style/NB.Theme.TextAppearance.Read.BottomMenu.Button"
                     android:drawableTop="@drawable/ic_collections_bookmark_black_24dp"
                     android:text="添加书签"/>
+
+                <TextView
+                    android:id="@+id/read_tv_marker"
+                    style="@style/NB.Theme.TextAppearance.Read.BottomMenu.Button"
+                    android:drawableTop="@drawable/ic_book_black_24dp"
+                    android:text="查看书签"/>
             </LinearLayout>
         </LinearLayout>
     </RelativeLayout>

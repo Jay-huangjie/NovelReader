@@ -26,7 +26,6 @@
             android:theme="@style/SplashTheme">
         </activity>
         <activity android:name=".ui.activity.MainActivity">
-
         </activity>
         <activity android:name=".ui.activity.BookDiscussionActivity"/>
         <activity android:name=".ui.activity.DiscDetailActivity"/>
@@ -52,8 +51,7 @@
         <activity android:name=".ui.activity.MoreSettingActivity"/>
         <activity
             android:name=".ui.activity.LoginActivity"
-            android:theme="@style/Theme.AppCompat.Light.DarkActionBar"
-            >
+            android:theme="@style/Theme.AppCompat.Light.DarkActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -62,8 +60,7 @@
         </activity>
         <activity
             android:name=".ui.activity.RegisterActivity"
-            android:theme="@style/Theme.AppCompat.Light.DarkActionBar"
-            />
+            android:theme="@style/Theme.AppCompat.Light.DarkActionBar"/>
         <activity
             android:name=".ui.activity.NewDownLoadListActivity"
             android:theme="@style/AppTheme">
@@ -71,6 +68,11 @@
 
         <service android:name=".service.DownloadService"/>
 
+        <activity
+            android:name=".ui.activity.BookMarkerActivity"
+            android:label="@string/title_activity_book_marker"
+            android:theme="@style/AppTheme">
+        </activity>
     </application>
 
 </manifest>
