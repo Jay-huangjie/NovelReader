@@ -311,4 +311,9 @@ public class RemoteRepository {
         return mBookApi.lastannouncement()
                 .map(bean -> bean);
     }
+
+    public Single<Announcement> lastalert() {
+        return mBookApi.lastalert()
+                .map(bean -> bean);
+    }
 }

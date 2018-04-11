@@ -1,6 +1,7 @@
 package com.example.newbiechen.ireader.ui.fragment;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
@@ -77,6 +78,29 @@ public class BookShelfFragment extends BaseMVPFragment<BookShelfContract.Present
                         return;
                     String[] split = announcement.getContent().split(";");
                     marqueeView.startWithList(Arrays.asList(split));
+                });
+
+        RemoteRepository.getInstance().lastalert()
+                .compose(RxUtils::toSimpleSingle)
+                .subscribe((announcement, throwable) -> {
+                    if (announcement == null)
+                        return;
+                    long aLong = getActivity().getSharedPreferences("config", Context.MODE_PRIVATE)
+                            .getLong("alertId", -1);
+                    if (aLong != announcement.getId()) {
+                        getActivity().getSharedPreferences("config", Context.MODE_PRIVATE)
+                                .edit()
+                                .putLong("alertId", announcement.getId())
+                                .apply();
+                        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                        builder.setTitle("提示")
+                                .setMessage(announcement.getContent())
+                                .setPositiveButton("确定", (dialog, which) -> {
+                                    dialog.dismiss();
+                                })
+                                .create()
+                                .show();
+                    }
                 });
     }
 

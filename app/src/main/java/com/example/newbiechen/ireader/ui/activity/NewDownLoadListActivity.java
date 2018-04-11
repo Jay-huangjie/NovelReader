@@ -71,7 +71,7 @@ public class NewDownLoadListActivity extends BaseActivity implements IUIDownHand
             data.addAll(allinfo);
         }
 
-        if (data.addAll(allSuccessinfo)) {
+        if (!data.containsAll(allSuccessinfo)) {
             data.addAll(allSuccessinfo);
         }
 

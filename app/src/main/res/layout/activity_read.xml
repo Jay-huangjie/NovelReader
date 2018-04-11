@@ -64,6 +64,7 @@
                     <TextView
                         android:id="@+id/read_tv_brief"
                         style="@style/NB.Theme.TextAppearance.Read.TopMenu"
+                        android:visibility="gone"
                         android:layout_alignParentRight="true"
                         android:text="@string/nb.read.brief"/>
 
@@ -71,6 +72,7 @@
                         android:id="@+id/read_tv_community"
                         style="@style/NB.Theme.TextAppearance.Read.TopMenu"
                         android:layout_toLeftOf="@id/read_tv_brief"
+                        android:visibility="gone"
                         android:text="@string/nb.read.community"/>
                 </RelativeLayout>
             </android.support.v7.widget.Toolbar>
